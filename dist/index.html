@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
-</head>
-<body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-  <script src="bundle.js"></script>
-
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpack Starter Kit</title>
+  </head>
+  <body>
+    <h1 class="welcome">Welcome to Travelers-R-Us</h1>
+    <h2 class="please-login">Please Login Below</h2>
+    <header class="login-container">
+      <form class="login-form">
+        <h3 class="login-error"></h3>
+        <label for="username" class="login-labels">Username:</label>
+        <input type="text" class="login-inputs" id="username" name="username" autocomplete="username">
+        <label for="password" class="login-labels">Password:</label>
+        <input type="text" class="login-inputs" id="password" name="password">
+        <button id="loginButton">Login</button>
+      </form>
+    </header>
+    <script src="bundle.js"></script>
+  </body>
 </html>
