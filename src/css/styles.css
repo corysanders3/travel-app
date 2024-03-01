@@ -2,6 +2,7 @@ body {
   background-image: url('../images/background-image.png');
   background-size: cover;
   background-repeat: no-repeat;
+  height: 100vh;
 }
 
 .hidden {
@@ -36,7 +37,9 @@ body {
 }
 
 .login-inputs {
-  margin-bottom: 20%;
+  margin-bottom: 30px;
+  font-size: 1.5em;
+  padding-left: 2%;
 }
 
 .login-labels {
@@ -56,4 +59,10 @@ body {
 
 #loginButton:active {
   background-color: #e0e0e0;
+}
+
+.login-error {
+  color: red;
+  font-weight: 400;
+  text-align: center;
 }
