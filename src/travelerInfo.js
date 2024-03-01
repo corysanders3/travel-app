@@ -7,14 +7,8 @@ function getTravelerTrips(allTrips, id) {
         let myTrips = allTrips.trips.filter((trip) => {
             return trip.userID === id;
         })
-        myTrips.forEach((trip) => {
-            trip.date = new Date(trip.date);
-        })
         myTrips.sort((a, b) => {
-            return b.date - a.date;
-        })
-        myTrips.forEach((trip) => {
-            trip.date = trip.date.toISOString().split('T')[0].replaceAll('-', '/');
+            return new Date(b.date) - new Date(a.date);
         })
         return myTrips;
     } else {

@@ -21,8 +21,8 @@ function fetchDestinations() {
         .catch(err => console.log('error:', err))
 }
 
-fetchTraveler();
-fetchTrips();
-fetchDestinations();
+// fetchTraveler();
+// fetchTrips();
+// fetchDestinations();
 
 export { fetchTraveler, fetchTrips, fetchDestinations };

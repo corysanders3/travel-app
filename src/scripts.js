@@ -8,3 +8,4 @@ import './css/styles.css';
 import './images/turing-logo.png'
 
 import { fetchTraveler, fetchTrips, fetchDestinations } from './fetchRequests.js';
+import { getTravelerTrips, getTotalCost } from './travelerInfo.js'
