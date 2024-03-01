@@ -8,8 +8,8 @@
   </head>
   <body>
     <h1 class="welcome">Welcome to Travelers-R-Us</h1>
-    <h2 class="please-login">Please Login Below</h2>
-    <header class="login-container">
+    <h2 class="please-login hidden">Please Login Below</h2>
+    <header class="login-container hidden">
       <form class="login-form">
         <h3 class="login-error"></h3>
         <label for="username" class="login-labels">Username:</label>
@@ -19,8 +19,13 @@
         <button id="loginButton">Login</button>
       </form>
     </header>
-    <main class="dashboard hidden">
-      <h4>test</h4>
+    <main class="dashboard">
+      <section class="past-trips">
+        <h3>Past Trips</h3>
+      </section>
+      <section class="pending-trips">
+        <h3>Pending Trips</h3>
+      </section>
     </main>
     <script src="bundle.js"></script>
   </body>

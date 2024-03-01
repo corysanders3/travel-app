@@ -66,3 +66,20 @@ body {
   font-weight: 400;
   text-align: center;
 }
+
+.dashboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+}
+
+.past-trips, .pending-trips {
+  border: 2px solid rgb(99, 91, 91);
+  border-radius: 10px;
+  width: 40vw;
+  height: 60vh;
+  margin-top: 5%;
+  padding-left: 2%;
+  padding-right: 2%;
+}

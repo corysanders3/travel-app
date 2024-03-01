@@ -10,7 +10,7 @@ const pleaseLogin = document.querySelector('.please-login');
 const dashboard = document.querySelector('.dashboard');
 const welcomeMessage = document.querySelector('.welcome')
 
-let currentUser;
+let currentID;
 
 loginButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -38,7 +38,8 @@ function getUserID() {
         loginSection.classList.add('hidden');
         pleaseLogin.classList.add('hidden');
         dashboard.classList.remove('hidden');
-        welcomeMessage.innerText = `Welcome Tester!`
+        currentID = userID
+        // run function here to get user data
     }
 }
 
@@ -47,4 +48,5 @@ function getUserID() {
 
 
 export { loginButton, loginSection, username, password, loginError, 
-pleaseLogin, dashboard, welcomeMessage };
+pleaseLogin, dashboard, welcomeMessage, currentID };
+export { checkLogin, getUserID };
