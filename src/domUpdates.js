@@ -6,6 +6,7 @@ const loginSection = document.querySelector('.login-container');
 const username = document.querySelector('#username');
 const password = document.querySelector('#password');
 const loginError = document.querySelector('.login-error');
+const pleaseLogin = document.querySelector('.please-login');
 
 let currentUser;
 
@@ -33,6 +34,7 @@ function getUserID() {
         loginError.innerText = 'Incorrect Username or ID is missing. Please try again.'
     } else {
         loginSection.classList.add('hidden');
+        pleaseLogin.classList.add('hidden');
     }
 }
 
@@ -40,4 +42,5 @@ function getUserID() {
 
 
 
-export { loginButton, loginSection, username, password, loginError };
+export { loginButton, loginSection, username, password, loginError, 
+pleaseLogin };

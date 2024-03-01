@@ -8,5 +8,6 @@ import './css/styles.css';
 import './images/turing-logo.png'
 
 import { fetchTraveler, fetchTrips, fetchDestinations } from './fetchRequests.js';
-import { loginButton, loginSection, username, password, loginError } from './domUpdates.js'
+import { loginButton, loginSection, username, password, loginError, 
+pleaseLogin } from './domUpdates.js'
 import { getTravelerTrips, getTotalCost } from './travelerInfo.js'
