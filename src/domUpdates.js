@@ -7,6 +7,8 @@ const username = document.querySelector('#username');
 const password = document.querySelector('#password');
 const loginError = document.querySelector('.login-error');
 const pleaseLogin = document.querySelector('.please-login');
+const dashboard = document.querySelector('.dashboard');
+const welcomeMessage = document.querySelector('.welcome')
 
 let currentUser;
 
@@ -35,6 +37,8 @@ function getUserID() {
     } else {
         loginSection.classList.add('hidden');
         pleaseLogin.classList.add('hidden');
+        dashboard.classList.remove('hidden');
+        welcomeMessage.innerText = `Welcome Tester!`
     }
 }
 
@@ -43,4 +47,4 @@ function getUserID() {
 
 
 export { loginButton, loginSection, username, password, loginError, 
-pleaseLogin };
+pleaseLogin, dashboard, welcomeMessage };

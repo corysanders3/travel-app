@@ -16,10 +16,16 @@ function getTravelerTrips(allTrips, id) {
     }
 }
 
-function getTotalCost(myTrips, allDest, status) {
+function getTotalCost(myTrips, allDest, status, year) {
     let approvedTrips = myTrips.filter((trip) => {
-        return trip.status === 'approved' || status;
-    })
+        return trip.status === status;
+    });
+    if(year) {
+        approvedTrips = approvedTrips.filter((trip) => {
+            return trip.date.includes(year)
+        })
+    }
+
     let totalCost = approvedTrips.reduce((total, trip) => {
         allDest.destinations.forEach((dest) => {
             if(trip.destinationID === dest.id) {
@@ -29,7 +35,7 @@ function getTotalCost(myTrips, allDest, status) {
         })
         return total;
     }, 0);
-    return (totalCost * 1.1)
+    return Math.round((totalCost * 1.1))
 }
 
 export { getTravelerTrips, getTotalCost };

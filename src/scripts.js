@@ -9,5 +9,5 @@ import './images/turing-logo.png'
 
 import { fetchTraveler, fetchTrips, fetchDestinations } from './fetchRequests.js';
 import { loginButton, loginSection, username, password, loginError, 
-pleaseLogin } from './domUpdates.js'
+pleaseLogin, dashboard, welcomeMessage } from './domUpdates.js'
 import { getTravelerTrips, getTotalCost } from './travelerInfo.js'

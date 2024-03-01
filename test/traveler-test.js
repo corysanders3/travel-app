@@ -207,18 +207,22 @@ describe('travelerTripData', function() {
     });
     it('should calculate total cost of approved trips', function() {
         const user2Trips = getTravelerTrips(allTrips, 2)
-        console.log('here', user2Trips)
-        const total = getTotalCost(user2Trips, vacation)
+        const total = getTotalCost(user2Trips, vacation, 'approved')
         expect(total).to.equal(5225)
+    });
+    it('should take in a year to get a total for just that year', function() {
+        const user2Trips = getTravelerTrips(allTrips, 2)
+        const total = getTotalCost(user2Trips, vacation, 'approved', '2023')
+        expect(total).to.equal(814)
     });
     it('should calculate total cost for a different user', function() {
         const user1Trips = getTravelerTrips(allTrips, 1)
-        const total = getTotalCost(user1Trips, vacation)
+        const total = getTotalCost(user1Trips, vacation, 'approved')
         expect(total).to.equal(0)
     });
     it('should take in a status to find cost for pending', function() {
         const user1Trips = getTravelerTrips(allTrips, 1)
         const total = getTotalCost(user1Trips, vacation, 'pending')
         expect(total).to.equal(2805)
-    })
+    });
 });
