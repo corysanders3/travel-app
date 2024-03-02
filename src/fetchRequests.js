@@ -1,28 +1,48 @@
 // this is where fetch requests will go
 
-function fetchTraveler() {
-    fetch('http://localhost:3001/api/v1/travelers/23')
-        .then(response => response.json())
-        .then(data => console.log('data:', data))
-        .catch(err => console.log('error:', err))
+function fetchTraveler(id, userData) {
+    return fetch(`http://localhost:3001/api/v1/travelers/${id}`)
+        .then(response => {
+            if(!response.ok) {
+                throw new Error('There was an error getting your account information. Please try again later.')
+            }
+            return response.json();
+        })
+        .then(data => userData = data)
+        .catch(err => {
+            welcomeMessage.innerText = err.message;
+            welcomeMessage.style.color = 'red';
+        })
 }
 
-function fetchTrips() {
-    fetch('http://localhost:3001/api/v1/trips')
-        .then(response => response.json())
-        .then(data => console.log('trips:', data))
-        .catch(err => console.log('error:', err))
+function fetchTrips(tripsData) {
+    return fetch('http://localhost:3001/api/v1/trips')
+        .then(response => {
+            if(!response.ok) {
+                throw new Error('There was an error getting your account information. Please try again later.')
+            }
+            return response.json();
+        })
+        .then(data => tripsData = data)
+        .catch(err => {
+            welcomeMessage.innerText = err.message;
+            welcomeMessage.style.color = 'red';
+        })
 }
 
-function fetchDestinations() {
-    fetch('http://localhost:3001/api/v1/destinations')
-        .then(response => response.json())
-        .then(data => console.log('destinations:', data))
-        .catch(err => console.log('error:', err))
+function fetchDestinations(destinationsData) {
+    return fetch('http://localhost:3001/api/v1/destinations')
+        .then(response => {
+            if(!response.ok) {
+                throw new Error('There was an error getting your account information. Please try again later.')
+            }
+            return response.json();
+        })
+        .then(data => destinationsData = data)
+        .catch(err => {
+            welcomeMessage.innerText = err.message;
+            welcomeMessage.style.color = 'red';
+        })
 }
-
-// fetchTraveler();
-// fetchTrips();
-// fetchDestinations();
 
 export { fetchTraveler, fetchTrips, fetchDestinations };

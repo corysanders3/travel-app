@@ -9,7 +9,8 @@
   <body>
     <h1 class="welcome">Welcome to Travelers-R-Us</h1>
     <h2 class="please-login hidden">Please Login Below</h2>
-    <header class="login-container">
+    <button id="newTripButton">New Trip Request</button>
+    <header class="login-container hidden">
       <form class="login-form">
         <h3 class="login-error"></h3>
         <label for="username" class="login-labels">Username:</label>
@@ -21,10 +22,14 @@
     </header>
     <main class="dashboard">
       <section class="past-trips">
-        <h3>Past Trips</h3>
+        <h3 class="dash-header">Past Trips</h3>
+        <section class="past-trips-data">
+        </section>
       </section>
       <section class="pending-trips">
-        <h3>Pending Trips</h3>
+        <h3 class="dash-header">Pending Trips</h3>
+        <section class="pending-trips-data">
+        </section>
       </section>
     </main>
     <script src="bundle.js"></script>

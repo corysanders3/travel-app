@@ -9,8 +9,10 @@ const loginError = document.querySelector('.login-error');
 const pleaseLogin = document.querySelector('.please-login');
 const dashboard = document.querySelector('.dashboard');
 const welcomeMessage = document.querySelector('.welcome')
+const pastTripsData = document.querySelector('.past-trips-data')
+const pendingTripsData = document.querySelector('.pending-trips-data')
 
-let currentID;
+let currentID, user, trips, destinations;
 
 loginButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -38,15 +40,27 @@ function getUserID() {
         loginSection.classList.add('hidden');
         pleaseLogin.classList.add('hidden');
         dashboard.classList.remove('hidden');
-        currentID = userID
+        currentID = userID;
         // run function here to get user data
     }
 }
 
+function fetchAllData(id) {
+    Promise.all([fetchTraveler(id), fetchTrips(), fetchDestinations()]).then(
+        ([traveler, allTrips, allDestinations]) => {
+            user = traveler;
+            trips = allTrips;
+            destinations = allDestinations;
+            console.log('here', user)
+        }
+    )
+}
 
+fetchAllData(23);
 
 
 
 export { loginButton, loginSection, username, password, loginError, 
-pleaseLogin, dashboard, welcomeMessage, currentID };
+pleaseLogin, dashboard, welcomeMessage, currentID, user, trips, destinations, 
+pastTripsData, pendingTripsData };
 export { checkLogin, getUserID };

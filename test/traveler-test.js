@@ -1,6 +1,6 @@
 // this is where my unit tests will go
 import { expect } from 'chai';
-import { getTravelerTrips, getTotalCost } from '../src/travelerInfo.js'
+import { getTravelerTrips, getTotalCost, showMyTripDestinations, getSingleTripCost } from '../src/travelerInfo.js'
 
 describe('travelerTripData', function() {
     let allTrips;
@@ -139,7 +139,7 @@ describe('travelerTripData', function() {
             }]
         }
     });
-    it('should get all trips for a specific traveler', function() {
+    it('getTravelerTrips - should get all trips for a specific traveler', function() {
         const user2 = getTravelerTrips(allTrips, 2)
         expect(user2.length).to.equal(4)
         expect(user2).to.deep.equal([
@@ -151,7 +151,7 @@ describe('travelerTripData', function() {
                 date: '2024/03/20',
                 duration: 5,
                 status: 'pending',
-                suggestedActivities: []
+                suggestedActivities: [],
             },
             {
                 id: 4,
@@ -161,7 +161,7 @@ describe('travelerTripData', function() {
                 date: '2024/01/30',
                 duration: 3,
                 status: 'approved',
-                suggestedActivities: []
+                suggestedActivities: [],
             },
             {
                 id: 1,
@@ -171,7 +171,7 @@ describe('travelerTripData', function() {
                 date: '2024/01/20',
                 duration: 8,
                 status: 'approved',
-                suggestedActivities: []
+                suggestedActivities: [],
             },
             {
                 id: 8,
@@ -185,7 +185,7 @@ describe('travelerTripData', function() {
             }
         ])
     });
-    it('should get trips for a different traveler', function() {
+    it('getTravelerTrips - should get trips for a different traveler', function() {
         const user1 = getTravelerTrips(allTrips, 1)
         expect(user1.length).to.equal(1)
         expect(user1).to.deep.equal([
@@ -201,28 +201,135 @@ describe('travelerTripData', function() {
             }
         ])
     });
-    it('should return a string if user id does not exist', function() {
+    it('getTravelerTrips - should return a string if user id does not exist', function() {
         const noID = getTravelerTrips(allTrips)
         expect(noID).to.equal('This User ID does not exist.')
     });
-    it('should calculate total cost of approved trips', function() {
+    it('getTotalCost - should calculate total cost of approved trips', function() {
         const user2Trips = getTravelerTrips(allTrips, 2)
         const total = getTotalCost(user2Trips, vacation, 'approved')
         expect(total).to.equal(5225)
     });
-    it('should take in a year to get a total for just that year', function() {
+    it('getTotalCost - should take in a year to get a total for just that year', function() {
         const user2Trips = getTravelerTrips(allTrips, 2)
         const total = getTotalCost(user2Trips, vacation, 'approved', '2023')
         expect(total).to.equal(814)
     });
-    it('should calculate total cost for a different user', function() {
+    it('getTotalCost - should calculate total cost for a different user', function() {
         const user1Trips = getTravelerTrips(allTrips, 1)
         const total = getTotalCost(user1Trips, vacation, 'approved')
         expect(total).to.equal(0)
     });
-    it('should take in a status to find cost for pending', function() {
+    it('getTotalCost - should take in a status to find cost for pending', function() {
         const user1Trips = getTravelerTrips(allTrips, 1)
         const total = getTotalCost(user1Trips, vacation, 'pending')
         expect(total).to.equal(2805)
+    });
+    it('showMyTripDestinations - it should show the destination now', function() {
+        const user2Trips = getTravelerTrips(allTrips, 2);
+        showMyTripDestinations(user2Trips, vacation);
+        expect(user2Trips.length).to.equal(4);
+        expect(user2Trips).to.deep.equal([
+            {
+                id: 6,
+                userID: 2,
+                destination: 'New York, New York',
+                destinationID: 15,
+                travelers: 2,
+                date: '2024/03/20',
+                duration: 5,
+                status: 'pending',
+                suggestedActivities: [],
+            },
+            {
+                id: 4,
+                userID: 2,
+                destination: 'Paris, France',
+                destinationID: 12,
+                travelers: 1,
+                date: '2024/01/30',
+                duration: 3,
+                status: 'approved',
+                suggestedActivities: [],
+            },
+            {
+                id: 1,
+                userID: 2,
+                destination: 'London, England',
+                destinationID: 11,
+                travelers: 4,
+                date: '2024/01/20',
+                duration: 8,
+                status: 'approved',
+                suggestedActivities: [],
+            },
+            {
+                id: 8,
+                userID: 2,
+                destination: 'Denver, Colorado',
+                destinationID: 16,
+                travelers: 2,
+                date: '2023/11/29',
+                duration: 3,
+                status: 'approved',
+                suggestedActivities: [],
+            }
+        ]);
+    });
+    it('getSingleTripCost - it should add a total cost to the users trips', function() {
+        const user2Trips = getTravelerTrips(allTrips, 2);
+        showMyTripDestinations(user2Trips, vacation);
+        getSingleTripCost(user2Trips, vacation);
+        expect(user2Trips.length).to.equal(4)
+        expect(user2Trips).to.deep.equal([
+            {
+                id: 6,
+                userID: 2,
+                destination: 'New York, New York',
+                destinationID: 15,
+                travelers: 2,
+                date: '2024/03/20',
+                duration: 5,
+                status: 'pending',
+                suggestedActivities: [],
+                total: 1485,
+            },
+            {
+                id: 4,
+                userID: 2,
+                destination: 'Paris, France',
+                destinationID: 12,
+                travelers: 1,
+                date: '2024/01/30',
+                duration: 3,
+                status: 'approved',
+                suggestedActivities: [],
+                total: 1111,
+            },
+            {
+                id: 1,
+                userID: 2,
+                destination: 'London, England',
+                destinationID: 11,
+                travelers: 4,
+                date: '2024/01/20',
+                duration: 8,
+                status: 'approved',
+                suggestedActivities: [],
+                total: 3300,
+            },
+            {
+                id: 8,
+                userID: 2,
+                destination: 'Denver, Colorado',
+                destinationID: 16,
+                travelers: 2,
+                date: '2023/11/29',
+                duration: 3,
+                status: 'approved',
+                suggestedActivities: [],
+                total: 814,
+            }
+        ]);
     });
 });
