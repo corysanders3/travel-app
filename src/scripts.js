@@ -1,6 +1,6 @@
 import './css/styles.scss';
 
-import './images/turing-logo.png'
+import './images/airplane-icon.jpg'
 
 import { fetchTraveler, fetchTrips, fetchDestinations, postNewTrip } from './fetchRequests.js';
 
