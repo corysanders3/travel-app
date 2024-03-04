@@ -35,7 +35,6 @@ function getTotalCost(myTrips, allDest, status, year) {
         })
         return total;
     }, 0);
-    console.log('here', myTrips)
     return Math.round((totalCost * 1.1));
 }
 
@@ -43,18 +42,22 @@ function showMyTripDestinations(myTrips, allDest) {
     let updatedTrips = myTrips.map((trip) => {
         return allDest.destinations.forEach((dest) => {
             if(trip.destinationID === dest.id) {
-                trip.destination = dest.destination;
+                if(!trip.destination) {
+                    trip.destination = dest.destination;
+                }
             }
         });
     });
     return updatedTrips;
 }
 
-function getSingleTripCost(updatedTrips, allDest) {
-    let tripsTotalCost = updatedTrips.map((trip) => {
+function getSingleTripCost(myTrips, allDest) {
+    let tripsTotalCost = myTrips.map((trip) => {
         return allDest.destinations.forEach((dest) => {
             if(trip.destinationID === dest.id) {
-                trip.total = Math.round(((dest.estimatedFlightCostPerPerson * trip.travelers) + (dest.estimatedLodgingCostPerDay * trip.duration)) * (1.1))
+                if(!trip.total) {
+                    trip.total = Math.round(((dest.estimatedFlightCostPerPerson * trip.travelers) + (dest.estimatedLodgingCostPerDay * trip.duration)) * (1.1))
+                }
             }
         });
     });

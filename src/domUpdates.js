@@ -1,22 +1,30 @@
 // this is where domUpdates will go
 import { fetchTraveler, fetchTrips, fetchDestinations } from './fetchRequests.js';
+import { getTravelerTrips, getTotalCost, showMyTripDestinations, getSingleTripCost } from './travelerInfo.js';
+
 
 const loginButton = document.querySelector('#loginButton');
-const loginSection = document.querySelector('.login-container');
+const loginSection = document.querySelector('.login-form');
 const username = document.querySelector('#username');
 const password = document.querySelector('#password');
 const loginError = document.querySelector('.login-error');
 const pleaseLogin = document.querySelector('.please-login');
 const dashboard = document.querySelector('.dashboard');
-const welcomeMessage = document.querySelector('.welcome')
-const pastTripsData = document.querySelector('.past-trips-data')
-const pendingTripsData = document.querySelector('.pending-trips-data')
+const welcomeMessage = document.querySelector('.welcome');
+const pastTripsData = document.querySelector('.past-trips-data');
+const pendingTripsData = document.querySelector('.pending-trips-data');
+const newTripButton = document.querySelector('#newTripButton');
+const totalSpent = document.querySelector('.total-spent')
 
-let currentID, user, trips, destinations;
+let currentID, user, trips, destinations, myTrips, totalForYear;
 
 loginButton.addEventListener('click', (e) => {
     e.preventDefault();
     checkLogin();
+});
+
+newTripButton.addEventListener('click', (e) => {
+
 })
 
 function checkLogin() {
@@ -40,8 +48,9 @@ function getUserID() {
         loginSection.classList.add('hidden');
         pleaseLogin.classList.add('hidden');
         dashboard.classList.remove('hidden');
+        newTripButton.classList.remove('hidden');
         currentID = userID;
-        // run function here to get user data
+        fetchAllData(currentID);
     }
 }
 
@@ -51,16 +60,47 @@ function fetchAllData(id) {
             user = traveler;
             trips = allTrips;
             destinations = allDestinations;
-            console.log('here', user)
+            myTrips = getTravelerTrips(trips, id);
+            showMyTripDestinations(myTrips, destinations);
+            getSingleTripCost(myTrips, destinations);
+            totalForYear = getTotalCost(myTrips, destinations, 'approved', '2022');
+            showTotalSpent(totalForYear, '2022');
+            showPastTrips(myTrips)
         }
     )
 }
 
-fetchAllData(23);
+fetchAllData(38);
+
+function showTotalSpent(total, year) {
+    totalSpent.innerText = `Total Spent This Year (${year}): $${total}`
+}
+
+function showPastTrips(myTrips) {
+    myTrips.forEach((trip) => {
+        if(trip.status === 'approved') {
+            pastTripsData.insertAdjacentHTML('beforeend',
+            `<p class="trips-area"><b>Destination:</b> ${trip.destination}</p>
+            <p><b>Date of first night:</b> ${trip.date}</p>
+            <p><b>Number of nights:</b> ${trip.duration} nights</p>
+            <p><b>Number of travelers:</b> ${trip.travelers} travelers</p>
+            <p><b>Total Cost:</b> $${trip.total}</p>
+            `)
+        } else if(trip.status === 'pending') {
+            pendingTripsData.insertAdjacentHTML('beforeend',
+            `<p class="trips-area"><b>Date of first night:</b> ${trip.date}</p>
+            <p><b>Destination:</b> ${trip.destination}</p>
+            <p><b>Number of nights:</b> ${trip.duration} nights</p>
+            <p><b>Number of travelers:</b> ${trip.travelers} travelers</p>
+            <p><b>Total Cost:</b> $${trip.total}</p>
+            `)
+        }
+    })
+}
 
 
 
 export { loginButton, loginSection, username, password, loginError, 
 pleaseLogin, dashboard, welcomeMessage, currentID, user, trips, destinations, 
-pastTripsData, pendingTripsData };
-export { checkLogin, getUserID };
+myTrips, totalForYear, pastTripsData, pendingTripsData, newTripButton };
+export { checkLogin, getUserID, fetchAllData, showPastTrips, showTotalSpent };

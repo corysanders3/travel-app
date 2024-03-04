@@ -9,9 +9,8 @@
   <body>
     <h1 class="welcome">Welcome to Travelers-R-Us</h1>
     <h2 class="please-login hidden">Please Login Below</h2>
-    <button id="newTripButton">New Trip Request</button>
-    <header class="login-container hidden">
-      <form class="login-form">
+    <button class="" id="newTripButton">New Trip Request</button>
+      <form class="login-form hidden">
         <h3 class="login-error"></h3>
         <label for="username" class="login-labels">Username:</label>
         <input type="text" class="login-inputs" id="username" name="username" autocomplete="username">
@@ -19,10 +18,10 @@
         <input type="text" class="login-inputs" id="password" name="password">
         <button id="loginButton">Login</button>
       </form>
-    </header>
-    <main class="dashboard">
+    <main class="dashboard hidden">
       <section class="past-trips">
         <h3 class="dash-header">Past Trips</h3>
+        <h4 class="total-spent"></h4>
         <section class="past-trips-data">
         </section>
       </section>
@@ -32,6 +31,13 @@
         </section>
       </section>
     </main>
+    <form class="new-trip-form">
+      <h3>Let's Make A New Trip Request!</h3>
+      <label for="date" class="new-trip-labels">Date of First Night:</label>
+      <input type="date" class="new-trip-inputs" id="date" name="date">
+      <label for="duration" class="new-trip-labels">Number of Nights:</label>
+      <input type="number" class="new-trip-inputs" id="duration" name="duration">
+    </form>
     <script src="bundle.js"></script>
   </body>
 </html>
