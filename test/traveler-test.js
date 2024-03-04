@@ -1,6 +1,7 @@
-// this is where my unit tests will go
 import { expect } from 'chai';
-import { getTravelerTrips, getTotalCost, showMyTripDestinations, getSingleTripCost } from '../src/travelerInfo.js'
+
+import { getTravelerTrips, getTotalCost, showMyTripDestinations, 
+getSingleTripCost } from '../src/travelerInfo.js'
 
 describe('travelerTripData', function() {
     let allTrips;
@@ -140,8 +141,8 @@ describe('travelerTripData', function() {
         }
     });
     it('getTravelerTrips - should get all trips for a specific traveler', function() {
-        const user2 = getTravelerTrips(allTrips, 2)
-        expect(user2.length).to.equal(4)
+        const user2 = getTravelerTrips(allTrips, 2);
+        expect(user2.length).to.equal(4);
         expect(user2).to.deep.equal([
             {
                 id: 6,
@@ -186,8 +187,8 @@ describe('travelerTripData', function() {
         ])
     });
     it('getTravelerTrips - should get trips for a different traveler', function() {
-        const user1 = getTravelerTrips(allTrips, 1)
-        expect(user1.length).to.equal(1)
+        const user1 = getTravelerTrips(allTrips, 1);
+        expect(user1.length).to.equal(1);
         expect(user1).to.deep.equal([
             {
                 id: 2,
@@ -202,28 +203,28 @@ describe('travelerTripData', function() {
         ])
     });
     it('getTravelerTrips - should return a string if user id does not exist', function() {
-        const noID = getTravelerTrips(allTrips)
-        expect(noID).to.equal('This User ID does not exist.')
+        const noID = getTravelerTrips(allTrips);
+        expect(noID).to.equal('This User ID does not exist.');
     });
     it('getTotalCost - should calculate total cost of approved trips', function() {
-        const user2Trips = getTravelerTrips(allTrips, 2)
-        const total = getTotalCost(user2Trips, vacation, 'approved')
-        expect(total).to.equal(5225)
+        const user2Trips = getTravelerTrips(allTrips, 2);
+        const total = getTotalCost(user2Trips, vacation, 'approved');
+        expect(total).to.equal(5225);
     });
     it('getTotalCost - should take in a year to get a total for just that year', function() {
-        const user2Trips = getTravelerTrips(allTrips, 2)
-        const total = getTotalCost(user2Trips, vacation, 'approved', '2023')
-        expect(total).to.equal(814)
+        const user2Trips = getTravelerTrips(allTrips, 2);
+        const total = getTotalCost(user2Trips, vacation, 'approved', '2023');
+        expect(total).to.equal(814);
     });
     it('getTotalCost - should calculate total cost for a different user', function() {
-        const user1Trips = getTravelerTrips(allTrips, 1)
-        const total = getTotalCost(user1Trips, vacation, 'approved')
-        expect(total).to.equal(0)
+        const user1Trips = getTravelerTrips(allTrips, 1);
+        const total = getTotalCost(user1Trips, vacation, 'approved');
+        expect(total).to.equal(0);
     });
     it('getTotalCost - should take in a status to find cost for pending', function() {
-        const user1Trips = getTravelerTrips(allTrips, 1)
-        const total = getTotalCost(user1Trips, vacation, 'pending')
-        expect(total).to.equal(2805)
+        const user1Trips = getTravelerTrips(allTrips, 1);
+        const total = getTotalCost(user1Trips, vacation, 'pending');
+        expect(total).to.equal(2805);
     });
     it('showMyTripDestinations - it should show the destination now', function() {
         const user2Trips = getTravelerTrips(allTrips, 2);

@@ -1,7 +1,3 @@
-// this is where basic functionality will go 
-// to then be used to update the dom with
-// these functions are the ones that will be tested
-
 function getTravelerTrips(allTrips, id) {
     if(id) {
         let myTrips = allTrips.trips.filter((trip) => {
@@ -22,7 +18,7 @@ function getTotalCost(myTrips, allDest, status, year) {
     });
     if(year) {
         approvedTrips = approvedTrips.filter((trip) => {
-            return trip.date.includes(year)
+            return trip.date.includes(year);
         });
     }
 
