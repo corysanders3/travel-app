@@ -16,7 +16,7 @@ body {
   margin-left: 5%;
 }
 
-.login-form, .new-trip-form {
+.login-form, .new-trip-form, .successful-post {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -31,14 +31,18 @@ body {
   @include box-styling();
 }
 
+.successful-post {
+  text-align: center;
+}
+
 .blur-background {
   position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(8px);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
 }
 
 .login-inputs {
@@ -56,7 +60,8 @@ body {
   font-size: larger;
 }
 
-#loginButton, #newTripButton, #submitRequest, #closePopup {
+#loginButton, #newTripButton, #submitRequest, #closePopup, #seeEstimate, 
+#makeNewRequest, #allDoneButton {
   padding-left: 15%;
   padding-right: 15%;
   border: 1px solid black;
@@ -66,7 +71,8 @@ body {
   @include padding-height3();
 }
 
-#newTripButton, #submitRequest, #closePopup {
+#newTripButton, #submitRequest, #closePopup, #seeEstimate, 
+#makeNewRequest, #allDoneButton {
   font-size: 1.2em;
   padding-left: 5%;
   padding-right: 5%;
@@ -74,12 +80,17 @@ body {
   padding-bottom: 1%;
 }
 
+#closePopup, #seeEstimate, #submitRequest, #makeNewRequest, #allDoneButton {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
 .submit-close {
   display: flex;
   justify-content: space-evenly;
 }
 
-#submitRequest {
+#seeEstimate, #makeNewRequest {
   margin-right: 20%;
 }
 
@@ -88,7 +99,8 @@ body {
   color: #fff;
 }
 
-#loginButton:active, #newTripButton:active, #submitRequest:active {
+#loginButton:active, #newTripButton:active, #submitRequest:active, #seeEstimate:active, 
+#makeNewRequest:active, #allDoneButton:active {
   background-color: #000;
   color: #fff;
 }
@@ -98,18 +110,18 @@ body {
   color: red;
 }
 
-.login-error, .new-trip-error {
+.login-error, .new-trip-error, .post-response {
   color: red;
   font-weight: 400;
   text-align: center;
 }
 
-.new-trip-error {
-  font-size: 1.5em;
+.new-trip-error, .post-response {
+  font-size: 1.4em;
   margin-top: 0px;
 }
 
-.new-trip-header {
+.new-trip-header, .show-estimate {
   font-size: 1.5em;
 }
 
@@ -117,7 +129,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-
 }
 
 .past-trips, .pending-trips {

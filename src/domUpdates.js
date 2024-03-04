@@ -1,5 +1,5 @@
 // this is where domUpdates will go
-import { fetchTraveler, fetchTrips, fetchDestinations } from './fetchRequests.js';
+import { fetchTraveler, fetchTrips, fetchDestinations, postNewTrip } from './fetchRequests.js';
 import { getTravelerTrips, getTotalCost, showMyTripDestinations, getSingleTripCost } from './travelerInfo.js';
 
 
@@ -25,8 +25,14 @@ const destinationForm = document.querySelector('#destination');
 const newTripForm = document.querySelector('.new-trip-form');
 const blurBackground = document.querySelector('.blur-background');
 const newTripError = document.querySelector('.new-trip-error');
+const seeEstimate = document.querySelector('#seeEstimate');
+const showEstimate = document.querySelector('.show-estimate');
+const successfulPost = document.querySelector('.successful-post');
+const makeNewRequest = document.querySelector('#makeNewRequest');
+const allDoneButton = document.querySelector('#allDoneButton');
+const postResponse = document.querySelector('.post-response')
 
-let currentID, user, trips, destinations, myTrips, totalForYear;
+let currentID, user, trips, destinations, myTrips, totalForYear, post;
 
 loginButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -39,12 +45,20 @@ newTripButton.addEventListener('click', () => {
     showDestinationOptions(destinations);
 });
 
+seeEstimate.addEventListener('click', (e) => {
+    estimateFormCheck(e);
+})
+
 closePopup.addEventListener('click', (e) => {
     closeForm(e);
 });
 
 submitRequest.addEventListener('click', (e) => {
-    submitFormCheck(e);
+    e.preventDefault();
+    postNewTrip(trips, 3, post);
+    showConfirmation();
+    // submitFormHandling();
+    // fetchAllData(3);
 });
 
 function checkLogin() {
@@ -86,11 +100,12 @@ function fetchAllData(id) {
             totalForYear = getTotalCost(myTrips, destinations, 'approved', '2022');
             showTotalSpent(totalForYear, '2022');
             showPastTrips(myTrips);
+            console.log('trips', trips)
         }
     )
 }
 
-fetchAllData(38);
+fetchAllData(3);
 
 function showTotalSpent(total, year) {
     totalSpent.innerText = `Total Spent This Year (${year}): $${total}`
@@ -133,34 +148,63 @@ function closeForm(e) {
     e.preventDefault();
     newTripForm.classList.add('hidden');
     blurBackground.classList.add('hidden');
+    submitRequest.classList.add('hidden');
     dateForm.value = '';
     durationForm.value = '';
     travelersForm.value = '';
     destinationForm.value = '';
     newTripError.innerText = '';
+    showEstimate.innerText = '';
 }
 
-function submitFormCheck(e) {
+function estimateFormCheck(e) {
     e.preventDefault();
     newTripError.innerText = '';
+    showEstimate.innerText = '';
+    submitRequest.classList.add('hidden');
 
     if(dateForm.value.length < 1 || durationForm.value.trim().length < 1 || 
     travelersForm.value.trim().length < 1 || destinationForm.value.length < 1) {
         newTripError.innerText = 'Please make sure to fill out all fields.';
     } else {
-        submitForm();
+        let total = getTripCost(destinations);
+        showEstimate.innerText = `Estimated Total: $${total}`
+        submitRequest.classList.remove('hidden');
     }
 }
 
-function submitForm() {
+function getTripCost(allDestinations) {
+    let foundDestination = allDestinations.destinations.find((dest) => {
+        return dest.id === parseInt(destinationForm.value)
+    })
+    return Math.round((((foundDestination.estimatedLodgingCostPerDay * durationForm.value) + 
+    (foundDestination.estimatedFlightCostPerPerson * travelersForm.value)) * (1.1)))
+}
+
+function showConfirmation() {
     newTripForm.classList.add('hidden');
+    successfulPost.classList.remove('hidden');
+}
+
+function submitFormHandling() {
     blurBackground.classList.add('hidden');
+    submitRequest.classList.add('hidden');
+    successfulPost.classList.add('hidden');
+    dateForm.value = '';
+    durationForm.value = '';
+    travelersForm.value = '';
+    destinationForm.value = '';
+    showEstimate.innerText = '';
+    postResponse.innerText = '';
 }
 
 export { loginButton, loginSection, username, password, loginError, 
 pleaseLogin, dashboard, welcomeMessage, currentID, user, trips, destinations, 
 myTrips, totalForYear, pastTripsData, pendingTripsData, newTripButton, 
 destinationSelect, submitRequest, closePopup, dateForm, durationForm, 
-travelersForm, destinationForm, newTripForm, blurBackground, newTripError };
+travelersForm, destinationForm, newTripForm, blurBackground, newTripError, 
+seeEstimate, showEstimate,  successfulPost, makeNewRequest, allDoneButton, 
+postResponse, post };
 export { checkLogin, getUserID, fetchAllData, showPastTrips, showTotalSpent, 
-showDestinationOptions, closeForm, submitForm, submitFormCheck };
+showDestinationOptions, closeForm, submitFormHandling, estimateFormCheck, getTripCost, 
+showConfirmation };
