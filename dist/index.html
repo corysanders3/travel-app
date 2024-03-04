@@ -8,9 +8,9 @@
   </head>
   <body>
     <h1 class="welcome">Welcome to Travelers-R-Us</h1>
-    <h2 class="please-login hidden">Please Login Below</h2>
-    <button class="" id="newTripButton">New Trip Request</button>
-      <form class="login-form hidden">
+    <h2 class="please-login">Please Login Below</h2>
+    <button class="hidden" id="newTripButton">New Trip Request</button>
+      <form class="login-form">
         <h3 class="login-error"></h3>
         <label for="username" class="login-labels">Username:</label>
         <input type="text" class="login-inputs" id="username" name="username" autocomplete="username">
@@ -18,7 +18,7 @@
         <input type="text" class="login-inputs" id="password" name="password">
         <button id="loginButton">Login</button>
       </form>
-    <main class="dashboard">
+    <main class="dashboard hidden">
       <section class="past-trips">
         <h3 class="dash-header">Past Trips</h3>
         <h4 class="total-spent"></h4>
@@ -46,9 +46,9 @@
       <label for="date" class="new-trip-labels">Date of First Night:</label>
       <input type="date" class="new-trip-inputs" id="date" name="date">
       <label for="duration" class="new-trip-labels">Number of Nights:</label>
-      <input type="number" class="new-trip-inputs" id="duration" name="duration" min="0">
+      <input type="number" class="new-trip-inputs" id="duration" name="duration" min="1">
       <label for="travelers" class="new-trip-labels">Number of Travelers:</label>
-      <input type="number" class="new-trip-inputs" id="travelers" name="travelers" min="0">
+      <input type="number" class="new-trip-inputs" id="travelers" name="travelers" min="1">
       <label for="destination" class="new-trip-labels">Select a Destination:</label>
       <select class="new-trip-inputs" id="destination" name="destination">
       </select>
