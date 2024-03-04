@@ -68,7 +68,9 @@ function postNewTrip(allTrips, myID, postData) {
         }
         return response.json();
     })
-    .then(data => postResponse.innerText = `Your trip request is now under review. For your reference, the id number is ${data.newTrip.id}.`)
+    .then(data => postResponse.innerText = `Your trip request is under review. 
+    
+    For your reference, the id number is ${data.newTrip.id}. It is safe to leave this page.`)
     .catch(err => console.log(err))
 }
 

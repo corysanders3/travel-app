@@ -61,7 +61,7 @@ body {
 }
 
 #loginButton, #newTripButton, #submitRequest, #closePopup, #seeEstimate, 
-#makeNewRequest, #allDoneButton {
+#allDoneButton {
   padding-left: 15%;
   padding-right: 15%;
   border: 1px solid black;
@@ -72,7 +72,7 @@ body {
 }
 
 #newTripButton, #submitRequest, #closePopup, #seeEstimate, 
-#makeNewRequest, #allDoneButton {
+#allDoneButton {
   font-size: 1.2em;
   padding-left: 5%;
   padding-right: 5%;
@@ -80,7 +80,7 @@ body {
   padding-bottom: 1%;
 }
 
-#closePopup, #seeEstimate, #submitRequest, #makeNewRequest, #allDoneButton {
+#closePopup, #seeEstimate, #submitRequest, #allDoneButton {
   padding-left: 10%;
   padding-right: 10%;
 }
@@ -90,7 +90,7 @@ body {
   justify-content: space-evenly;
 }
 
-#seeEstimate, #makeNewRequest {
+#seeEstimate {
   margin-right: 20%;
 }
 
@@ -100,7 +100,7 @@ body {
 }
 
 #loginButton:active, #newTripButton:active, #submitRequest:active, #seeEstimate:active, 
-#makeNewRequest:active, #allDoneButton:active {
+#allDoneButton:active {
   background-color: #000;
   color: #fff;
 }
@@ -140,6 +140,7 @@ body {
   padding-right: 2%;
   overflow: auto;
   font-size: 1.2em;
+  margin-top: 2%;
   @include box-styling();
 }
 

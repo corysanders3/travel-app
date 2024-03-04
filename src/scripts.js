@@ -13,9 +13,9 @@ pleaseLogin, dashboard, welcomeMessage, user, trips, destinations,
 myTrips, totalForYear, pastTripsData, pendingTripsData, newTripButton, 
 destinationSelect, submitRequest, closePopup, dateForm, durationForm, 
 travelersForm, destinationForm, newTripForm, blurBackground, newTripError, 
-seeEstimate, showEstimate, successfulPost, makeNewRequest, allDoneButton, 
+seeEstimate, showEstimate, successfulPost, allDoneButton, 
 postResponse, post } from './domUpdates.js'
 import { checkLogin, getUserID, fetchAllData, showPastTrips, showTotalSpent, 
 showDestinationOptions, closeForm, allDoneWithForm, estimateFormCheck, getTripCost, 
-showConfirmation, makeANewRequest } from './domUpdates.js'
+showConfirmation, welcomeUser } from './domUpdates.js'
 import { getTravelerTrips, getTotalCost, showMyTripDestinations, getSingleTripCost } from './travelerInfo.js'
