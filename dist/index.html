@@ -18,7 +18,7 @@
         <input type="text" class="login-inputs" id="password" name="password">
         <button id="loginButton">Login</button>
       </form>
-    <main class="dashboard hidden">
+    <main class="dashboard">
       <section class="past-trips">
         <h3 class="dash-header">Past Trips</h3>
         <h4 class="total-spent"></h4>
@@ -31,12 +31,23 @@
         </section>
       </section>
     </main>
-    <form class="new-trip-form">
-      <h3>Let's Make A New Trip Request!</h3>
+    <div class="blur-background hidden"></div>
+    <form class="new-trip-form hidden">
+      <h3 class="new-trip-header">Let's Make A New Trip Request!</h3>
+      <h4 class="new-trip-error"></h4>
       <label for="date" class="new-trip-labels">Date of First Night:</label>
       <input type="date" class="new-trip-inputs" id="date" name="date">
       <label for="duration" class="new-trip-labels">Number of Nights:</label>
       <input type="number" class="new-trip-inputs" id="duration" name="duration">
+      <label for="travelers" class="new-trip-labels">Number of Travelers:</label>
+      <input type="number" class="new-trip-inputs" id="travelers" name="travelers">
+      <label for="destination" class="new-trip-labels">Select a Destination:</label>
+      <select class="new-trip-inputs" id="destination" name="destination">
+      </select>
+      <aside class="submit-close">
+        <button id="submitRequest">Submit</button>
+        <button id="closePopup">Close</button>
+      </aside>
     </form>
     <script src="bundle.js"></script>
   </body>
