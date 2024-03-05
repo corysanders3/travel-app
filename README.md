@@ -34,6 +34,9 @@ Additional enhancements could include:
 7. CD into that directory and run `npm install` to install project dependencies
 8. Run `npm start` to start that server
 9. Navigate to the address provided within the terminal ex: http://localhost:8080/
+10. Once at the login page, you can login with the following credentials:
+    - Username: traveler10 (the number at the end can be any number between 1-50 to get a different user)
+    - Password: travel
 
 ## Test Driven Development
 This application uses a combination of Mocha Testing Framework and Chai Assertion Library
