@@ -16,10 +16,16 @@ function getTravelerTrips(allTrips, id) {
     }
 }
 
-function getTotalCost(myTrips, allDest, status) {
+function getTotalCost(myTrips, allDest, status, year) {
     let approvedTrips = myTrips.filter((trip) => {
-        return trip.status === 'approved' || status;
-    })
+        return trip.status === status;
+    });
+    if(year) {
+        approvedTrips = approvedTrips.filter((trip) => {
+            return trip.date.includes(year)
+        });
+    }
+
     let totalCost = approvedTrips.reduce((total, trip) => {
         allDest.destinations.forEach((dest) => {
             if(trip.destinationID === dest.id) {
@@ -29,7 +35,33 @@ function getTotalCost(myTrips, allDest, status) {
         })
         return total;
     }, 0);
-    return (totalCost * 1.1)
+    return Math.round((totalCost * 1.1));
 }
 
-export { getTravelerTrips, getTotalCost };
+function showMyTripDestinations(myTrips, allDest) {
+    let updatedTrips = myTrips.map((trip) => {
+        return allDest.destinations.forEach((dest) => {
+            if(trip.destinationID === dest.id) {
+                if(!trip.destination) {
+                    trip.destination = dest.destination;
+                }
+            }
+        });
+    });
+    return updatedTrips;
+}
+
+function getSingleTripCost(myTrips, allDest) {
+    let tripsTotalCost = myTrips.map((trip) => {
+        return allDest.destinations.forEach((dest) => {
+            if(trip.destinationID === dest.id) {
+                if(!trip.total) {
+                    trip.total = Math.round(((dest.estimatedFlightCostPerPerson * trip.travelers) + (dest.estimatedLodgingCostPerDay * trip.duration)) * (1.1))
+                }
+            }
+        });
+    });
+    return tripsTotalCost;
+}
+
+export { getTravelerTrips, getTotalCost, showMyTripDestinations, getSingleTripCost };

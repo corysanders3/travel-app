@@ -1,0 +1,154 @@
+@import 'variables';
+@import 'mixins';
+
+body {
+  background-image: url('../images/background-image.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.welcome, .please-login, #newTripButton {
+  margin-left: 5%;
+}
+
+.login-form, .new-trip-form, .successful-post {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-left: 10%;
+  padding-right: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  @include padding-height3();
+  @include box-styling();
+}
+
+.successful-post {
+  text-align: center;
+}
+
+.blur-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+.login-inputs {
+  margin-bottom: 30px;
+  font-size: 1.5em;
+  padding-left: 2%;
+}
+
+.new-trip-inputs {
+  margin-bottom: 20px;
+  font-size: 1.3em;
+}
+
+.login-labels, .new-trip-labels {
+  font-size: larger;
+}
+
+#loginButton, #newTripButton, #submitRequest, #closePopup, #seeEstimate, 
+#allDoneButton {
+  padding-left: 15%;
+  padding-right: 15%;
+  border: 1px solid black;
+  background-color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  @include padding-height3();
+}
+
+#newTripButton, #submitRequest, #closePopup, #seeEstimate, 
+#allDoneButton {
+  font-size: 1.2em;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+#closePopup, #seeEstimate, #submitRequest, #allDoneButton {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.submit-close {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#seeEstimate {
+  margin-right: 20%;
+}
+
+#closePopup {
+  background-color: red;
+  color: #fff;
+}
+
+#loginButton:active, #newTripButton:active, #submitRequest:active, #seeEstimate:active, 
+#allDoneButton:active {
+  background-color: #000;
+  color: #fff;
+}
+
+#closePopup:active {
+  background-color: #fff;
+  color: red;
+}
+
+.login-error, .new-trip-error, .post-response {
+  color: red;
+  font-weight: 400;
+  text-align: center;
+}
+
+.new-trip-error, .post-response {
+  font-size: 1.4em;
+  margin-top: 0px;
+}
+
+.new-trip-header, .show-estimate {
+  font-size: 1.5em;
+}
+
+.dashboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.past-trips, .pending-trips {
+  border-radius: 10px;
+  width: 40vw;
+  height: 60vh;
+  margin-top: 4%;
+  padding-left: 2%;
+  padding-right: 2%;
+  overflow: auto;
+  font-size: 1.2em;
+  margin-top: 2%;
+  @include box-styling();
+}
+
+.dash-header {
+  font-size: 1.7em;
+}
+
+.trips-area {
+  border-top: 2px solid black;
+  padding-top: 3%;
+}

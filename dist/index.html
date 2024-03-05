@@ -9,7 +9,7 @@
   <body>
     <h1 class="welcome">Welcome to Travelers-R-Us</h1>
     <h2 class="please-login">Please Login Below</h2>
-    <header class="login-container">
+    <button class="hidden" id="newTripButton">New Trip Request</button>
       <form class="login-form">
         <h3 class="login-error"></h3>
         <label for="username" class="login-labels">Username:</label>
@@ -18,7 +18,46 @@
         <input type="text" class="login-inputs" id="password" name="password">
         <button id="loginButton">Login</button>
       </form>
-    </header>
+    <main class="dashboard hidden">
+      <section class="past-trips">
+        <h3 class="dash-header">Past Trips</h3>
+        <h4 class="total-spent"></h4>
+        <section class="past-trips-data">
+        </section>
+      </section>
+      <section class="pending-trips">
+        <h3 class="dash-header">Pending Trips</h3>
+        <section class="pending-trips-data">
+        </section>
+      </section>
+    </main>
+    <div class="blur-background hidden"></div>
+    <form class="successful-post hidden">
+      <h3 class="new-trip-header">Your Trip Request Is Submitted Successfully!</h3>
+      <h4 class="post-response"></h4>
+      <aside class="submit-close">
+        <button class="" id="allDoneButton">All Done</button>
+      </aside>
+    </form>
+    <form class="new-trip-form hidden">
+      <h3 class="new-trip-header">Let's Make A New Trip Request!</h3>
+      <h4 class="new-trip-error"></h4>
+      <label for="date" class="new-trip-labels">Date of First Night:</label>
+      <input type="date" class="new-trip-inputs" id="date" name="date">
+      <label for="duration" class="new-trip-labels">Number of Nights:</label>
+      <input type="number" class="new-trip-inputs" id="duration" name="duration" min="1">
+      <label for="travelers" class="new-trip-labels">Number of Travelers:</label>
+      <input type="number" class="new-trip-inputs" id="travelers" name="travelers" min="1">
+      <label for="destination" class="new-trip-labels">Select a Destination:</label>
+      <select class="new-trip-inputs" id="destination" name="destination">
+      </select>
+      <aside class="submit-close">
+        <button class="" id="seeEstimate">See Estimate</button>
+        <button class="" id="closePopup">Close</button>
+      </aside>
+      <h4 class="show-estimate"></h4>
+      <button class="hidden" id="submitRequest">Submit</button>
+    </form>
     <script src="bundle.js"></script>
   </body>
 </html>
