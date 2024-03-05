@@ -36,3 +36,4 @@ This application uses a combination of Mocha Testing Framework and Chai Assertio
 - run `npm test` from the associated root directory
 
 ## Deployed Page
+[Travel App](https://corysanders3.github.io/travel-app/)
