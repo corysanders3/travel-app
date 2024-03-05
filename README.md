@@ -27,13 +27,17 @@ Additional enhancements could include:
 ## Set Up
 1. Fork this repository
 2. Clone your own local version of the repository
-3. Run `npm install` to install project dependencies
+3. CD into that directory and run `npm install` to install project dependencies
 4. Run `npm start` to start the server
-5. Navigate to the address provided within the terminal ex: http://localhost:8080/
+5. You will also need to run the backend server. That repository can be found [here](https://github.com/turingschool-examples/travel-tracker-api).
+6. Clone a local version of the repo in step 5.
+7. CD into that directory and run `npm install` to install project dependencies
+8. Run `npm start` to start that server
+9. Navigate to the address provided within the terminal ex: http://localhost:8080/
 
 ## Test Driven Development
 This application uses a combination of Mocha Testing Framework and Chai Assertion Library
 - run `npm test` from the associated root directory
 
 ## Deployed Page
-[Travel App](https://corysanders3.github.io/travel-app/)
+
