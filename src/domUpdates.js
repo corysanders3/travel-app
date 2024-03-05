@@ -32,7 +32,8 @@ const successfulPost = document.querySelector('.successful-post');
 const allDoneButton = document.querySelector('#allDoneButton');
 const postResponse = document.querySelector('.post-response');
 const planeIcon = document.querySelector('.plane-icon');
-const newTripHeader = document.querySelector('.new-trip-header')
+const newTripHeader = document.querySelector('.new-trip-header');
+const destinationImage = document.querySelector('.destination-image');
 
 let user, trips, destinations, myTrips, totalForYear;
 
@@ -65,10 +66,12 @@ closePopup.addEventListener('click', (e) => {
 submitRequest.addEventListener('click', (e) => {
     e.preventDefault();
     postNewTrip(trips, parseInt(sessionStorage.getItem('user')));
-    showConfirmation();
+    showConfirmation(destinations, destinationForm);
 });
 
-allDoneButton.addEventListener('click', () => { });
+allDoneButton.addEventListener('click', () => {
+    allDoneWithForm();
+});
 
 function checkLogin() {
     if(password.value.trim().length < 1 || username.value.trim().length < 1) {
@@ -217,9 +220,14 @@ function getTripCost(allDestinations) {
     (foundDestination.estimatedFlightCostPerPerson * travelersForm.value)) * (1.1)));
 }
 
-function showConfirmation() {
+function showConfirmation(allDest, myDest) {
     newTripForm.classList.add('hidden');
     successfulPost.classList.remove('hidden');
+
+    let foundDestination = allDest.destinations.find((dest) => {
+        return dest.id === parseInt(myDest.value);
+    })
+    destinationImage.innerHTML = `<img class="dest-image" src=${foundDestination.image} alt="Picture of your next destination.">`;
 }
 
 function allDoneWithForm() {
@@ -233,6 +241,7 @@ function allDoneWithForm() {
     postResponse.innerText = '';
     newTripHeader.innerText = 'Your Trip Request..';
     showEstimate.innerText = '';
+    destinationImage.innerHTML = '';
 }
 
 function getPageReload() {
@@ -250,7 +259,7 @@ myTrips, totalForYear, pastTripsData, pendingTripsData, newTripButton,
 destinationSelect, submitRequest, closePopup, dateForm, durationForm, 
 travelersForm, destinationForm, newTripForm, blurBackground, newTripError, 
 seeEstimate, showEstimate,  successfulPost, allDoneButton, 
-postResponse, planeIcon, newTripHeader };
+postResponse, planeIcon, newTripHeader, destinationImage };
 
 export { checkLogin, getUserID, fetchAllData, showPastTrips, showTotalSpent, 
 showDestinationOptions, closeForm, allDoneWithForm, estimateFormCheck, getTripCost, 

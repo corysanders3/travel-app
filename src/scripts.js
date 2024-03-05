@@ -14,6 +14,6 @@ postResponse, planeIcon } from './domUpdates.js'
 
 import { checkLogin, getUserID, fetchAllData, showPastTrips, showTotalSpent, 
 showDestinationOptions, closeForm, allDoneWithForm, estimateFormCheck, getTripCost, 
-showConfirmation, welcomeUser, getPageReload, newTripHeader } from './domUpdates.js'
+showConfirmation, welcomeUser, getPageReload, newTripHeader, destinationImage } from './domUpdates.js'
 
 import { getTravelerTrips, getTotalCost, showMyTripDestinations, getSingleTripCost } from './travelerInfo.js'
