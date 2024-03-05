@@ -1,5 +1,5 @@
 import { dateForm, destinationForm, durationForm, postResponse, travelersForm, 
-welcomeMessage } from "./domUpdates";
+welcomeMessage, newTripHeader } from "./domUpdates";
 
 function fetchTraveler(id, userData) {
     return fetch(`http://localhost:3001/api/v1/travelers/${id}`)
@@ -67,10 +67,13 @@ function postNewTrip(allTrips, myID) {
         }
         return response.json();
     })
-    .then(data => postResponse.innerText = `Your trip request is under review. 
+    .then(data => {
+    newTripHeader.innerText = `Your Trip Request Has Been Submitted!`
+    postResponse.innerText = `Your trip request is under review. 
     
-    For your reference, the id number is ${data.newTrip.id}. It is safe to leave this page.`)
-    .catch(err => console.log(err));
+    For your reference, the id number is ${data.newTrip.id}. It is safe to leave this page.`
+    })
+    .catch(err => newTripHeader.innerText = `There was an issue with this request. Please try again later.`);
 }
 
 export { fetchTraveler, fetchTrips, fetchDestinations, postNewTrip };

@@ -1,6 +1,6 @@
 import './css/styles.scss';
 
-import './images/airplane-icon.jpg'
+import './images/airplane-icon.png';
 
 import { fetchTraveler, fetchTrips, fetchDestinations, postNewTrip } from './fetchRequests.js';
 
@@ -10,10 +10,10 @@ myTrips, totalForYear, pastTripsData, pendingTripsData, newTripButton,
 destinationSelect, submitRequest, closePopup, dateForm, durationForm, 
 travelersForm, destinationForm, newTripForm, blurBackground, newTripError, 
 seeEstimate, showEstimate, successfulPost, allDoneButton, 
-postResponse } from './domUpdates.js'
+postResponse, planeIcon } from './domUpdates.js'
 
 import { checkLogin, getUserID, fetchAllData, showPastTrips, showTotalSpent, 
 showDestinationOptions, closeForm, allDoneWithForm, estimateFormCheck, getTripCost, 
-showConfirmation, welcomeUser } from './domUpdates.js'
+showConfirmation, welcomeUser, getPageReload, newTripHeader } from './domUpdates.js'
 
 import { getTravelerTrips, getTotalCost, showMyTripDestinations, getSingleTripCost } from './travelerInfo.js'

@@ -10,6 +10,7 @@ body {
 
 .hidden {
   display: none !important;
+  opacity: 0 !important;
 }
 
 .welcome, .please-login, #newTripButton {
@@ -96,11 +97,13 @@ body {
 #allDoneButton:active {
   background-color: #000;
   color: #fff;
+  outline: none;
 }
 
 #closePopup:active {
   background-color: #fff;
   color: red;
+  outline: none;
 }
 
 .login-error, .new-trip-error, .post-response {
@@ -109,7 +112,11 @@ body {
   text-align: center;
 }
 
-.new-trip-error, .post-response {
+.total-spent, .show-estimate {
+  font-weight: 600;
+}
+
+.new-trip-error, .post-response, .login-error {
   font-size: 1.4em;
   margin-top: 0px;
 }
@@ -136,4 +143,34 @@ body {
 .trips-area {
   border-top: 2px solid black;
   padding-top: 3%;
+}
+
+.plane-icon {
+  position: absolute;
+  width: 15%;
+  transform: rotate(18deg);
+  top: 10%;
+  left: 20%;
+  opacity: 80%;
+}
+
+@keyframes planeMovement {
+  0% {
+    left: 20%;
+  }
+  10% {
+    transform: rotate(18deg);
+  }
+  50% {
+    top: 10%;
+  }
+  100% {
+    transform: rotate(-5deg);
+    top: 0;
+    left: 80%;
+  }
+}
+
+:focus {
+  outline: 4px solid #007bff;
 }

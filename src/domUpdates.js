@@ -31,14 +31,14 @@ const showEstimate = document.querySelector('.show-estimate');
 const successfulPost = document.querySelector('.successful-post');
 const allDoneButton = document.querySelector('#allDoneButton');
 const postResponse = document.querySelector('.post-response');
+const planeIcon = document.querySelector('.plane-icon');
+const newTripHeader = document.querySelector('.new-trip-header')
 
 let user, trips, destinations, myTrips, totalForYear;
 
 window.addEventListener('load', () => {
     if(sessionStorage.getItem('user')) {
-        loginSection.classList.add('hidden');
-        dashboard.classList.remove('hidden');
-        newTripButton.classList.remove('hidden');
+        getPageReload();
         fetchAllData(parseInt(sessionStorage.getItem('user')));
     }
 });
@@ -88,6 +88,7 @@ function getUserID() {
     if(!userID || userID > 50) {
         loginError.innerText = 'Incorrect Username or ID is missing. Please try again.'
     } else {
+        planeIcon.style.animation = 'planeMovement 2s linear forwards'
         loginSection.classList.add('hidden');
         dashboard.classList.remove('hidden');
         newTripButton.classList.remove('hidden');
@@ -151,11 +152,33 @@ function showDestinationOptions(allDestinations) {
 }
 
 function welcomeUser(userInfo) {
-    welcomeMessage.innerText = `Welcome ${userInfo.name}`
-    pleaseLogin.innerText = `User ID: ${userInfo.id}
-    Type: ${userInfo.travelerType.toUpperCase()}`
+    welcomeMessage.innerText = `Welcome ${userInfo.name}`;
+    if(userInfo.travelerType === 'relaxer') {
+        pleaseLogin.innerText = `User ID: ${userInfo.id}
+        Type: ${userInfo.travelerType.charAt(0).toUpperCase() 
+        + userInfo.travelerType.slice(1)} 😴`
+    } else if(userInfo.travelerType === 'thrill-seeker'){
+        pleaseLogin.innerText = `User ID: ${userInfo.id}
+        Type: ${userInfo.travelerType.charAt(0).toUpperCase() 
+        + userInfo.travelerType.slice(1)} 🎢`
+    } else if(userInfo.travelerType === 'shopper'){
+        pleaseLogin.innerText = `User ID: ${userInfo.id}
+        Type: ${userInfo.travelerType.charAt(0).toUpperCase() 
+        + userInfo.travelerType.slice(1)} 🛍`
+    } else if(userInfo.travelerType === 'photographer'){
+        pleaseLogin.innerText = `User ID: ${userInfo.id}
+        Type: ${userInfo.travelerType.charAt(0).toUpperCase() 
+        + userInfo.travelerType.slice(1)} 📸`
+    } else if(userInfo.travelerType === 'foodie'){
+        pleaseLogin.innerText = `User ID: ${userInfo.id}
+        Type: ${userInfo.travelerType.charAt(0).toUpperCase() 
+        + userInfo.travelerType.slice(1)} 🌮`
+    } else {
+        pleaseLogin.innerText = `User ID: ${userInfo.id}
+        Type: ${userInfo.travelerType.charAt(0).toUpperCase() 
+        + userInfo.travelerType.slice(1)} 🛫`
+    }
 }
-
 function closeForm(e) {
     e.preventDefault();
     newTripForm.classList.add('hidden');
@@ -208,7 +231,17 @@ function allDoneWithForm() {
     travelersForm.value = '';
     destinationForm.value = '';
     postResponse.innerText = '';
+    newTripHeader.innerText = 'Your Trip Request..';
     showEstimate.innerText = '';
+}
+
+function getPageReload() {
+    loginSection.classList.add('hidden');
+    dashboard.classList.remove('hidden');
+    newTripButton.classList.remove('hidden');
+    planeIcon.style.left = '80%';
+    planeIcon.style.top = '0%';
+    planeIcon.style.transform = 'rotate(-5deg)';
 }
 
 export { loginButton, loginSection, username, password, loginError, 
@@ -217,8 +250,8 @@ myTrips, totalForYear, pastTripsData, pendingTripsData, newTripButton,
 destinationSelect, submitRequest, closePopup, dateForm, durationForm, 
 travelersForm, destinationForm, newTripForm, blurBackground, newTripError, 
 seeEstimate, showEstimate,  successfulPost, allDoneButton, 
-postResponse };
+postResponse, planeIcon, newTripHeader };
 
 export { checkLogin, getUserID, fetchAllData, showPastTrips, showTotalSpent, 
 showDestinationOptions, closeForm, allDoneWithForm, estimateFormCheck, getTripCost, 
-showConfirmation, welcomeUser };
+showConfirmation, welcomeUser, getPageReload };
