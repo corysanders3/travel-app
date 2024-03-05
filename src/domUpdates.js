@@ -1,6 +1,7 @@
-// this is where domUpdates will go
 import { fetchTraveler, fetchTrips, fetchDestinations, postNewTrip } from './fetchRequests.js';
-import { getTravelerTrips, getTotalCost, showMyTripDestinations, getSingleTripCost } from './travelerInfo.js';
+
+import { getTravelerTrips, getTotalCost, showMyTripDestinations, 
+getSingleTripCost } from './travelerInfo.js';
 
 
 const loginButton = document.querySelector('#loginButton');
@@ -29,15 +30,16 @@ const seeEstimate = document.querySelector('#seeEstimate');
 const showEstimate = document.querySelector('.show-estimate');
 const successfulPost = document.querySelector('.successful-post');
 const allDoneButton = document.querySelector('#allDoneButton');
-const postResponse = document.querySelector('.post-response')
+const postResponse = document.querySelector('.post-response');
+const planeIcon = document.querySelector('.plane-icon');
+const newTripHeader = document.querySelector('.new-trip-header');
+const destinationImage = document.querySelector('.destination-image');
 
-let user, trips, destinations, myTrips, totalForYear, post;
+let user, trips, destinations, myTrips, totalForYear;
 
 window.addEventListener('load', () => {
     if(sessionStorage.getItem('user')) {
-        loginSection.classList.add('hidden');
-        dashboard.classList.remove('hidden');
-        newTripButton.classList.remove('hidden');
+        getPageReload();
         fetchAllData(parseInt(sessionStorage.getItem('user')));
     }
 });
@@ -63,12 +65,12 @@ closePopup.addEventListener('click', (e) => {
 
 submitRequest.addEventListener('click', (e) => {
     e.preventDefault();
-    postNewTrip(trips, parseInt(sessionStorage.getItem('user')), post);
-    showConfirmation();
+    postNewTrip(trips, parseInt(sessionStorage.getItem('user')));
+    showConfirmation(destinations, destinationForm);
 });
 
 allDoneButton.addEventListener('click', () => {
-
+    allDoneWithForm();
 });
 
 function checkLogin() {
@@ -89,6 +91,7 @@ function getUserID() {
     if(!userID || userID > 50) {
         loginError.innerText = 'Incorrect Username or ID is missing. Please try again.'
     } else {
+        planeIcon.style.animation = 'planeMovement 2s linear forwards'
         loginSection.classList.add('hidden');
         dashboard.classList.remove('hidden');
         newTripButton.classList.remove('hidden');
@@ -111,7 +114,7 @@ function fetchAllData(id) {
             showPastTrips(myTrips);
             welcomeUser(user);
         }
-    )
+    );
 }
 
 function showTotalSpent(total, year) {
@@ -127,7 +130,7 @@ function showPastTrips(myTrips) {
             <p><b>Number of nights:</b> ${trip.duration} nights</p>
             <p><b>Number of travelers:</b> ${trip.travelers} travelers</p>
             <p><b>Total Cost:</b> $${trip.total}</p>
-            `)
+            `);
         } else if(trip.status === 'pending') {
             pendingTripsData.insertAdjacentHTML('beforeend',
             `<p class="trips-area"><b>Destination:</b> ${trip.destination}</p>
@@ -135,9 +138,9 @@ function showPastTrips(myTrips) {
             <p><b>Number of nights:</b> ${trip.duration} nights</p>
             <p><b>Number of travelers:</b> ${trip.travelers} travelers</p>
             <p><b>Total Cost:</b> $${trip.total}</p>
-            `)
+            `);
         }
-    })
+    });
 }
 
 function showDestinationOptions(allDestinations) {
@@ -152,11 +155,33 @@ function showDestinationOptions(allDestinations) {
 }
 
 function welcomeUser(userInfo) {
-    welcomeMessage.innerText = `Welcome ${userInfo.name}`
-    pleaseLogin.innerText = `User ID: ${userInfo.id}
-    Type: ${userInfo.travelerType.toUpperCase()}`
+    welcomeMessage.innerText = `Welcome ${userInfo.name}`;
+    if(userInfo.travelerType === 'relaxer') {
+        pleaseLogin.innerText = `User ID: ${userInfo.id}
+        Type: ${userInfo.travelerType.charAt(0).toUpperCase() 
+        + userInfo.travelerType.slice(1)} 😴`
+    } else if(userInfo.travelerType === 'thrill-seeker'){
+        pleaseLogin.innerText = `User ID: ${userInfo.id}
+        Type: ${userInfo.travelerType.charAt(0).toUpperCase() 
+        + userInfo.travelerType.slice(1)} 🎢`
+    } else if(userInfo.travelerType === 'shopper'){
+        pleaseLogin.innerText = `User ID: ${userInfo.id}
+        Type: ${userInfo.travelerType.charAt(0).toUpperCase() 
+        + userInfo.travelerType.slice(1)} 🛍`
+    } else if(userInfo.travelerType === 'photographer'){
+        pleaseLogin.innerText = `User ID: ${userInfo.id}
+        Type: ${userInfo.travelerType.charAt(0).toUpperCase() 
+        + userInfo.travelerType.slice(1)} 📸`
+    } else if(userInfo.travelerType === 'foodie'){
+        pleaseLogin.innerText = `User ID: ${userInfo.id}
+        Type: ${userInfo.travelerType.charAt(0).toUpperCase() 
+        + userInfo.travelerType.slice(1)} 🌮`
+    } else {
+        pleaseLogin.innerText = `User ID: ${userInfo.id}
+        Type: ${userInfo.travelerType.charAt(0).toUpperCase() 
+        + userInfo.travelerType.slice(1)} 🛫`
+    }
 }
-
 function closeForm(e) {
     e.preventDefault();
     newTripForm.classList.add('hidden');
@@ -182,34 +207,50 @@ function estimateFormCheck(e) {
         newTripError.innerText = 'Please make sure to fill out all fields.';
     } else {
         let total = getTripCost(destinations);
-        showEstimate.innerText = `Estimated Total: $${total}`
+        showEstimate.innerText = `Estimated Total: $${total}`;
         submitRequest.classList.remove('hidden');
     }
 }
 
 function getTripCost(allDestinations) {
     let foundDestination = allDestinations.destinations.find((dest) => {
-        return dest.id === parseInt(destinationForm.value)
+        return dest.id === parseInt(destinationForm.value);
     })
     return Math.round((((foundDestination.estimatedLodgingCostPerDay * durationForm.value) + 
-    (foundDestination.estimatedFlightCostPerPerson * travelersForm.value)) * (1.1)))
+    (foundDestination.estimatedFlightCostPerPerson * travelersForm.value)) * (1.1)));
 }
 
-function showConfirmation() {
+function showConfirmation(allDest, myDest) {
     newTripForm.classList.add('hidden');
     successfulPost.classList.remove('hidden');
+
+    let foundDestination = allDest.destinations.find((dest) => {
+        return dest.id === parseInt(myDest.value);
+    })
+    destinationImage.innerHTML = `<img class="dest-image" src=${foundDestination.image} alt="Picture of your next destination.">`;
 }
 
 function allDoneWithForm() {
+    successfulPost.classList.add('hidden');
     blurBackground.classList.add('hidden');
     submitRequest.classList.add('hidden');
-    successfulPost.classList.add('hidden');
     dateForm.value = '';
     durationForm.value = '';
     travelersForm.value = '';
     destinationForm.value = '';
-    showEstimate.innerText = '';
     postResponse.innerText = '';
+    newTripHeader.innerText = 'Your Trip Request..';
+    showEstimate.innerText = '';
+    destinationImage.innerHTML = '';
+}
+
+function getPageReload() {
+    loginSection.classList.add('hidden');
+    dashboard.classList.remove('hidden');
+    newTripButton.classList.remove('hidden');
+    planeIcon.style.left = '80%';
+    planeIcon.style.top = '0%';
+    planeIcon.style.transform = 'rotate(-5deg)';
 }
 
 export { loginButton, loginSection, username, password, loginError, 
@@ -218,7 +259,8 @@ myTrips, totalForYear, pastTripsData, pendingTripsData, newTripButton,
 destinationSelect, submitRequest, closePopup, dateForm, durationForm, 
 travelersForm, destinationForm, newTripForm, blurBackground, newTripError, 
 seeEstimate, showEstimate,  successfulPost, allDoneButton, 
-postResponse, post };
+postResponse, planeIcon, newTripHeader, destinationImage };
+
 export { checkLogin, getUserID, fetchAllData, showPastTrips, showTotalSpent, 
 showDestinationOptions, closeForm, allDoneWithForm, estimateFormCheck, getTripCost, 
-showConfirmation, welcomeUser };
+showConfirmation, welcomeUser, getPageReload };

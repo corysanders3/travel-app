@@ -10,10 +10,11 @@ body {
 
 .hidden {
   display: none !important;
+  opacity: 0 !important;
 }
 
 .welcome, .please-login, #newTripButton {
-  margin-left: 5%;
+  margin-left: 3.4%;
 }
 
 .login-form, .new-trip-form, .successful-post {
@@ -21,13 +22,12 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding-left: 10%;
-  padding-right: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   @include padding-height3();
+  @include padding-width10();
   @include box-styling();
 }
 
@@ -81,13 +81,7 @@ body {
 }
 
 #closePopup, #seeEstimate, #submitRequest, #allDoneButton {
-  padding-left: 10%;
-  padding-right: 10%;
-}
-
-.submit-close {
-  display: flex;
-  justify-content: space-evenly;
+  @include padding-width10();
 }
 
 #seeEstimate {
@@ -103,11 +97,13 @@ body {
 #allDoneButton:active {
   background-color: #000;
   color: #fff;
+  outline: none;
 }
 
 #closePopup:active {
   background-color: #fff;
   color: red;
+  outline: none;
 }
 
 .login-error, .new-trip-error, .post-response {
@@ -116,39 +112,69 @@ body {
   text-align: center;
 }
 
-.new-trip-error, .post-response {
+.total-spent, .show-estimate {
+  font-weight: 600;
+}
+
+.new-trip-error, .post-response, .login-error {
   font-size: 1.4em;
   margin-top: 0px;
 }
 
-.new-trip-header, .show-estimate {
+.new-trip-header, .show-estimate, .dash-header {
   font-size: 1.5em;
 }
 
-.dashboard {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+.dashboard, .submit-close {
+  @include display-flex();
 }
 
 .past-trips, .pending-trips {
-  border-radius: 10px;
   width: 40vw;
   height: 60vh;
-  margin-top: 4%;
   padding-left: 2%;
   padding-right: 2%;
   overflow: auto;
   font-size: 1.2em;
-  margin-top: 2%;
+  margin-top: 2.5%;
   @include box-styling();
-}
-
-.dash-header {
-  font-size: 1.7em;
 }
 
 .trips-area {
   border-top: 2px solid black;
   padding-top: 3%;
+}
+
+.plane-icon {
+  position: absolute;
+  width: 15%;
+  transform: rotate(18deg);
+  top: 10%;
+  left: 20%;
+  opacity: 80%;
+}
+
+@keyframes planeMovement {
+  0% {
+    left: 20%;
+  }
+  10% {
+    transform: rotate(18deg);
+  }
+  50% {
+    top: 10%;
+  }
+  100% {
+    transform: rotate(-5deg);
+    top: 0;
+    left: 80%;
+  }
+}
+
+:focus {
+  outline: 4px solid #007bff;
+}
+
+.dest-image {
+  width: 105%;
 }

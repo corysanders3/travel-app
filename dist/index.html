@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpack Starter Kit</title>
+    <title>Travelers-R-Us</title>
   </head>
   <body>
+    <img class="plane-icon" src="./images/airplane-icon.png" alt="Flying Plane">
     <h1 class="welcome">Welcome to Travelers-R-Us</h1>
     <h2 class="please-login">Please Login Below</h2>
     <button class="hidden" id="newTripButton">New Trip Request</button>
       <form class="login-form">
-        <h3 class="login-error"></h3>
+        <p class="login-error"></p>
         <label for="username" class="login-labels">Username:</label>
         <input type="text" class="login-inputs" id="username" name="username" autocomplete="username">
         <label for="password" class="login-labels">Password:</label>
@@ -21,7 +22,7 @@
     <main class="dashboard hidden">
       <section class="past-trips">
         <h3 class="dash-header">Past Trips</h3>
-        <h4 class="total-spent"></h4>
+        <p class="total-spent"></p>
         <section class="past-trips-data">
         </section>
       </section>
@@ -33,15 +34,17 @@
     </main>
     <div class="blur-background hidden"></div>
     <form class="successful-post hidden">
-      <h3 class="new-trip-header">Your Trip Request Is Submitted Successfully!</h3>
-      <h4 class="post-response"></h4>
+      <h3 class="new-trip-header">Your Trip Request..</h3>
+      <section class="destination-image">
+      </section>
+      <p class="post-response"></p>
       <aside class="submit-close">
         <button class="" id="allDoneButton">All Done</button>
       </aside>
     </form>
     <form class="new-trip-form hidden">
       <h3 class="new-trip-header">Let's Make A New Trip Request!</h3>
-      <h4 class="new-trip-error"></h4>
+      <p class="new-trip-error"></p>
       <label for="date" class="new-trip-labels">Date of First Night:</label>
       <input type="date" class="new-trip-inputs" id="date" name="date">
       <label for="duration" class="new-trip-labels">Number of Nights:</label>
@@ -55,7 +58,7 @@
         <button class="" id="seeEstimate">See Estimate</button>
         <button class="" id="closePopup">Close</button>
       </aside>
-      <h4 class="show-estimate"></h4>
+      <p class="show-estimate"></p>
       <button class="hidden" id="submitRequest">Submit</button>
     </form>
     <script src="bundle.js"></script>
