@@ -3,7 +3,6 @@ import { fetchTraveler, fetchTrips, fetchDestinations, postNewTrip } from './fet
 import { getTravelerTrips, getTotalCost, showMyTripDestinations, 
 getSingleTripCost } from './travelerInfo.js';
 
-
 const loginButton = document.querySelector('#loginButton');
 const loginSection = document.querySelector('.login-form');
 const username = document.querySelector('#username');
@@ -34,6 +33,7 @@ const postResponse = document.querySelector('.post-response');
 const planeIcon = document.querySelector('.plane-icon');
 const newTripHeader = document.querySelector('.new-trip-header');
 const destinationImage = document.querySelector('.destination-image');
+const body = document.querySelector('body');
 
 let user, trips, destinations, myTrips, totalForYear;
 
@@ -41,6 +41,8 @@ window.addEventListener('load', () => {
     if(sessionStorage.getItem('user')) {
         getPageReload();
         fetchAllData(parseInt(sessionStorage.getItem('user')));
+    } else {
+        body.style.opacity = '1';
     }
 });
 
@@ -68,17 +70,15 @@ submitRequest.addEventListener('click', (e) => {
     submitFormCheck();
 });
 
-allDoneButton.addEventListener('click', () => {
+allDoneButton.addEventListener('click', (e) => {
+    e.preventDefault();
     allDoneWithForm();
 });
 
 function checkLogin() {
-    if(password.value.trim().length < 1 || username.value.trim().length < 1) {
-        loginError.innerText = 'Make sure to fill in both Username and Password.'
-    } else if(password.value !== 'travel') {
-        loginError.innerText = 'Incorrect Password. Please try again.'
-    } else if(!username.value.includes('traveler')) {
-        loginError.innerText = 'Incorrect Username. Please try again.'
+    if(password.value.trim().length < 1 || username.value.trim().length < 1 || 
+        password.value !== 'travel' || !username.value.includes('traveler')) {
+        loginError.innerText = 'Incorrect Username or Password. Please try again.';
     } else {
         getUserID();
     }
@@ -88,7 +88,7 @@ function getUserID() {
     let userID = parseInt(username.value.split('').slice(8).join(''));
 
     if(!userID || userID > 50) {
-        loginError.innerText = 'Incorrect Username or ID is missing. Please try again.'
+        loginError.innerText = 'Incorrect Username or Password. Please try again.'
     } else {
         planeIcon.style.animation = 'planeMovement 2s linear forwards'
         loginSection.classList.add('hidden');
@@ -215,7 +215,7 @@ function submitFormCheck() {
     if(dateForm.value.length < 1 || parseInt(durationForm.value) === 0 || 
         parseInt(travelersForm.value) === 0 || destinationForm.value.length < 1 || 
         durationForm.value.trim().length < 1 || travelersForm.value.trim().length < 1) {
-        newTripError.innerText = `Please make sure to fill out all fields, and click 'See Estimate' again.`;
+        newTripError.innerText = `Please make sure to fill out all fields.`;
         showEstimate.innerText = '';
         submitRequest.classList.add('hidden');
     } else {
@@ -263,6 +263,7 @@ function getPageReload() {
     planeIcon.style.left = '80%';
     planeIcon.style.top = '0%';
     planeIcon.style.transform = 'rotate(-5deg)';
+    body.style.opacity = '1';
 }
 
 export { loginButton, loginSection, username, password, loginError, 
@@ -271,7 +272,7 @@ myTrips, totalForYear, pastTripsData, pendingTripsData, newTripButton,
 destinationSelect, submitRequest, closePopup, dateForm, durationForm, 
 travelersForm, destinationForm, newTripForm, blurBackground, newTripError, 
 seeEstimate, showEstimate,  successfulPost, allDoneButton, 
-postResponse, planeIcon, newTripHeader, destinationImage };
+postResponse, planeIcon, newTripHeader, destinationImage, body };
 
 export { checkLogin, getUserID, fetchAllData, showPastTrips, showTotalSpent, 
 showDestinationOptions, closeForm, allDoneWithForm, estimateFormCheck, getTripCost, 
