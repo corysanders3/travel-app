@@ -46,7 +46,7 @@ Additional enhancements could include:
 ## Test Driven Development
 
 This application uses a combination of Mocha Testing Framework and Chai Assertion Library
-- run `npm test` from the associated root directory
+- Run `npm test` from the associated root directory
 
 ## Deployed Page
 
