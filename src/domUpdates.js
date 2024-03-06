@@ -65,8 +65,7 @@ closePopup.addEventListener('click', (e) => {
 
 submitRequest.addEventListener('click', (e) => {
     e.preventDefault();
-    postNewTrip(trips, parseInt(sessionStorage.getItem('user')));
-    showConfirmation(destinations, destinationForm);
+    submitFormCheck();
 });
 
 allDoneButton.addEventListener('click', () => {
@@ -202,13 +201,26 @@ function estimateFormCheck(e) {
     submitRequest.classList.add('hidden');
 
     if(dateForm.value.length < 1 || parseInt(durationForm.value) === 0 || 
-    parseInt(travelersForm.value) === 0 || destinationForm.value.length < 1 || 
-    durationForm.value.trim().length < 1 || travelersForm.value.trim().length < 1) {
+        parseInt(travelersForm.value) === 0 || destinationForm.value.length < 1 || 
+        durationForm.value.trim().length < 1 || travelersForm.value.trim().length < 1) {
         newTripError.innerText = 'Please make sure to fill out all fields.';
     } else {
         let total = getTripCost(destinations);
         showEstimate.innerText = `Estimated Total: $${total}`;
         submitRequest.classList.remove('hidden');
+    }
+}
+
+function submitFormCheck() {
+    if(dateForm.value.length < 1 || parseInt(durationForm.value) === 0 || 
+        parseInt(travelersForm.value) === 0 || destinationForm.value.length < 1 || 
+        durationForm.value.trim().length < 1 || travelersForm.value.trim().length < 1) {
+        newTripError.innerText = `Please make sure to fill out all fields, and click 'See Estimate' again.`;
+        showEstimate.innerText = '';
+        submitRequest.classList.add('hidden');
+    } else {
+        postNewTrip(trips, parseInt(sessionStorage.getItem('user')));
+        showConfirmation(destinations, destinationForm);
     }
 }
 
@@ -263,4 +275,4 @@ postResponse, planeIcon, newTripHeader, destinationImage };
 
 export { checkLogin, getUserID, fetchAllData, showPastTrips, showTotalSpent, 
 showDestinationOptions, closeForm, allDoneWithForm, estimateFormCheck, getTripCost, 
-showConfirmation, welcomeUser, getPageReload };
+showConfirmation, welcomeUser, getPageReload, submitFormCheck };

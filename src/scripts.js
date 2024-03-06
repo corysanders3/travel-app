@@ -10,10 +10,10 @@ myTrips, totalForYear, pastTripsData, pendingTripsData, newTripButton,
 destinationSelect, submitRequest, closePopup, dateForm, durationForm, 
 travelersForm, destinationForm, newTripForm, blurBackground, newTripError, 
 seeEstimate, showEstimate, successfulPost, allDoneButton, 
-postResponse, planeIcon } from './domUpdates.js'
+postResponse, planeIcon, newTripHeader, destinationImage, } from './domUpdates.js'
 
 import { checkLogin, getUserID, fetchAllData, showPastTrips, showTotalSpent, 
 showDestinationOptions, closeForm, allDoneWithForm, estimateFormCheck, getTripCost, 
-showConfirmation, welcomeUser, getPageReload, newTripHeader, destinationImage } from './domUpdates.js'
+showConfirmation, welcomeUser, getPageReload, submitFormCheck } from './domUpdates.js'
 
 import { getTravelerTrips, getTotalCost, showMyTripDestinations, getSingleTripCost } from './travelerInfo.js'
