@@ -26,7 +26,7 @@ Additional enhancements could include:
 
 ## Preview of App
 
-![Recorded_screen_1_V1 (5)](https://github.com/corysanders3/travel-app/assets/41808895/f0e1f2a2-e1da-41cf-914d-bd43435da523)
+![Travel App](https://github.com/corysanders3/travel-app/assets/41808895/f0e1f2a2-e1da-41cf-914d-bd43435da523)
 
 ## Set Up
 
