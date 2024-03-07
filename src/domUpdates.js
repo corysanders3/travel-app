@@ -105,13 +105,18 @@ function fetchAllData(id) {
             user = traveler;
             trips = allTrips;
             destinations = allDestinations;
-            myTrips = getTravelerTrips(trips, id);
-            showMyTripDestinations(myTrips, destinations);
-            getSingleTripCost(myTrips, destinations);
-            totalForYear = getTotalCost(myTrips, destinations, 'approved', '2022');
-            showTotalSpent(totalForYear, '2022');
-            showPastTrips(myTrips);
-            welcomeUser(user);
+            if(user && trips && destinations) {
+                myTrips = getTravelerTrips(trips, id);
+                showMyTripDestinations(myTrips, destinations);
+                getSingleTripCost(myTrips, destinations);
+                totalForYear = getTotalCost(myTrips, destinations, 'approved', '2022');
+                showTotalSpent(totalForYear, '2022');
+                showPastTrips(myTrips);
+                welcomeUser(user);
+            } else {
+                welcomeMessage.innerText = 'Apologies, we are having issues getting your information. Please try again later.';
+                welcomeMessage.style.color = 'red';
+            }
         }
     );
 }
