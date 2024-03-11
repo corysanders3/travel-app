@@ -751,13 +751,18 @@ function fetchAllData(id) {
             user = traveler;
             trips = allTrips;
             destinations = allDestinations;
-            myTrips = (0,_travelerInfo_js__WEBPACK_IMPORTED_MODULE_1__.getTravelerTrips)(trips, id);
-            (0,_travelerInfo_js__WEBPACK_IMPORTED_MODULE_1__.showMyTripDestinations)(myTrips, destinations);
-            (0,_travelerInfo_js__WEBPACK_IMPORTED_MODULE_1__.getSingleTripCost)(myTrips, destinations);
-            totalForYear = (0,_travelerInfo_js__WEBPACK_IMPORTED_MODULE_1__.getTotalCost)(myTrips, destinations, 'approved', '2022');
-            showTotalSpent(totalForYear, '2022');
-            showPastTrips(myTrips);
-            welcomeUser(user);
+            if(user && trips && destinations) {
+                myTrips = (0,_travelerInfo_js__WEBPACK_IMPORTED_MODULE_1__.getTravelerTrips)(trips, id);
+                (0,_travelerInfo_js__WEBPACK_IMPORTED_MODULE_1__.showMyTripDestinations)(myTrips, destinations);
+                (0,_travelerInfo_js__WEBPACK_IMPORTED_MODULE_1__.getSingleTripCost)(myTrips, destinations);
+                totalForYear = (0,_travelerInfo_js__WEBPACK_IMPORTED_MODULE_1__.getTotalCost)(myTrips, destinations, 'approved', '2022');
+                showTotalSpent(totalForYear, '2022');
+                showPastTrips(myTrips);
+                welcomeUser(user);
+            } else {
+                welcomeMessage.innerText = 'Apologies, we are having issues getting your information. Please try again later.';
+                welcomeMessage.style.color = 'red';
+            }
         }
     );
 }
