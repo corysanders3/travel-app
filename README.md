@@ -34,12 +34,8 @@ Additional enhancements could include:
 2. Clone your own local version of the repository
 3. CD into that directory and run `npm install` to install project dependencies
 4. Run `npm start` to start the server
-5. You will also need to run the backend server. That repository can be found [here](https://github.com/corysanders3/travel-tracker-api).
-6. Clone a local version of the repo in step 5.
-7. CD into that directory and run `npm install` to install project dependencies
-8. Run `npm start` to start that server
-9. Navigate to the address provided within the terminal ex: http://localhost:8080/
-10. Once at the login page, you can login with the following credentials:
+5. Navigate to the address provided within the terminal ex: http://localhost:8080/
+6. Once at the login page, you can login with the following credentials:
     - Username: traveler10 (the number at the end can be any number between 1-50 to get a different user)
     - Password: travel
 
