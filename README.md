@@ -12,11 +12,14 @@ Being able to see past and pending trips, with the estimated cost for each trip 
 
 ## Primary Technologies Used
 
-- Webpack
-- HTML
-- SCSS
-- JavaScript
-- Mocha Testing Framework & Chai Assertion Library
+<div align="center">
+    <img src="https://img.shields.io/badge/JavaScript-E8D44D?style=for-the-badge&logo=javascript&logoColor=fff" alt="javascript badge">
+    <img src="https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=for-the-badge" alt="html badge">
+    <img src="https://img.shields.io/badge/SCSS-C56494?style=for-the-badge&logo=sass&logoColor=fff" alt="css badge">
+    <img src="https://img.shields.io/badge/Webpack-8ACEF1?style=for-the-badge&logo=webpack&logoColor=fff" alt="css badge">
+    <img src="https://img.shields.io/badge/Mocha-886446?style=for-the-badge&logo=mocha&logoColor=fff" alt="css badge">
+    <img src="https://img.shields.io/badge/Chai-980B05?style=for-the-badge&logo=chai&logoColor=fff" alt="css badge">
+</div>
 
 ## Next Steps
 
