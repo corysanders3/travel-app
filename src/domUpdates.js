@@ -87,7 +87,7 @@ function checkLogin() {
 function getUserID() {
     let userID = parseInt(username.value.split('').slice(8).join(''));
 
-    if(!userID || userID > 50) {
+    if(!userID || userID > 51) {
         loginError.innerText = 'Incorrect Username or Password. Please try again.'
     } else {
         planeIcon.style.animation = 'planeMovement 2s linear forwards'
