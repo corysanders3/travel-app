@@ -2,7 +2,7 @@ import { dateForm, destinationForm, durationForm, postResponse, travelersForm,
 welcomeMessage, newTripHeader, fetchAllData, pendingTripsData } from "./domUpdates";
 
 function fetchTraveler(id, userData) {
-    return fetch(`https://travel-tracker-api.vercel.app/api/v1/travelers/${id}`)
+    return fetch(`https://travel-tracker-api-chi.vercel.app/api/v1/travelers/${id}`)
         .then(response => {
             if(!response.ok) {
                 throw new Error('There was an error getting your account information. Please try again later.')
@@ -17,7 +17,7 @@ function fetchTraveler(id, userData) {
 }
 
 function fetchTrips(tripsData) {
-    return fetch('https://travel-tracker-api.vercel.app/api/v1/trips')
+    return fetch('https://travel-tracker-api-chi.vercel.app/api/v1/trips')
         .then(response => {
             if(!response.ok) {
                 throw new Error('There was an error getting your account information. Please try again later.')
@@ -32,7 +32,7 @@ function fetchTrips(tripsData) {
 }
 
 function fetchDestinations(destinationsData) {
-    return fetch('https://travel-tracker-api.vercel.app/api/v1/destinations')
+    return fetch('https://travel-tracker-api-chi.vercel.app/api/v1/destinations')
         .then(response => {
             if(!response.ok) {
                 throw new Error('There was an error getting your account information. Please try again later.')
@@ -47,7 +47,7 @@ function fetchDestinations(destinationsData) {
 }
 
 function postNewTrip(allTrips, myID) {
-    return fetch('https://travel-tracker-api.vercel.app/api/v1/trips', {
+    return fetch('https://travel-tracker-api-chi.vercel.app/api/v1/trips', {
         method: 'POST',
         body: JSON.stringify({
             id: (allTrips.trips.length + 1),
