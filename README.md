@@ -49,4 +49,4 @@ This application uses a combination of Mocha Testing Framework and Chai Assertio
 
 ## Deployed Page
 
-[Travel Tracking](https://activity-tracker-ten-inky.vercel.app/)
+[Travel Tracking](https://travel-app-six-livid.vercel.app/)
